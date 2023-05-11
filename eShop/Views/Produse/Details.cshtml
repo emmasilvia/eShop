@@ -1,0 +1,64 @@
+﻿@model eShop.Models.Produs
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        <div class="card mb-12">
+            <div class="row g-0">
+                <div class="col-md-12">
+                    <div class="card-header text-white bg-info">
+                        <p class="card-text">
+                            <h5 class="card-title">
+                                @Model.Denumire
+                            </h5>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img src="@Model.Imagine" width="100%" alt="@Model.Denumire">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <p class="card-text">@Model.Descriere</p>
+                        <p class="card-text">
+                            <b>Restaurant: </b>
+                            <a asp-controller="Restaurante" asp-action="Details" asp-route-id="@Model.RestaurantId">
+                                @Model.Restaurant.Nume
+                            </a>
+                        </p>
+
+
+                        <p class="card-text">
+                            <b>Actors: </b>
+                            <hr />
+                            <div class="row">
+                                @foreach (var actor in Model.listaProduse_Ingrediente)
+                                {
+                                    <div class="column text-center">
+                                        <a asp-controller="Actors" asp-action="Details" asp-route-id="@actor.IngredientId">@actor.Ingredient.Denumire</a>
+                                    </div>
+                                }
+                            </div>
+                        </p>
+
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="card-footer">
+                        <p class="card-text">
+                            <a class="btn btn-outline-primary float-right" asp-action="Index">
+                                Back to List
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
